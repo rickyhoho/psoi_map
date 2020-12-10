@@ -1,5 +1,5 @@
 # map_edit
-  hkpsoimapedit
+  hkpsoi mapedit
 put under file like
 ```
 -10122020190654_200
@@ -9,3 +9,5 @@ put under file like
     -00001.png
   -ans.txt
 -edit.py
+```
+it will make a file inside the floder named remove
