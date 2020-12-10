@@ -11,4 +11,4 @@ put under file like
   -ans.txt
 -edit.py
 ```
-it will make a file inside the floder named remove
+it will make a file inside the floder named ```remove```
