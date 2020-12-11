@@ -1,4 +1,4 @@
-# map_edit
+# psoimap
   hkpsoi mapedit
   
 put under file like
@@ -10,5 +10,6 @@ put under file like
     -00001.png
   -ans.txt
 -edit.py
+-jsoncutter.py
 ```
 it will make a file inside the floder named ```remove```
