@@ -1,4 +1,4 @@
-# psoimap
+# psoi_map
   hkpsoi mapedit
   
 put under file like
