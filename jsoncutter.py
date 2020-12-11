@@ -112,16 +112,4 @@ for i in range(len(json_list)):
     process()
     output()
 
-'''def output():
-    with open(file + '/newmap.txt', 'a') as map2:
-        map2.write('[')
-        for i in range(len(maparray)):
-            map2.write('[')
-            for j in range(len(maparray[i])):
-                map2.write('"' + str(maparray[i][j]) + '",')
-                if j == len(maparray[i]) - 1:
-                    map2.write('"' + str(maparray[i][j]) + '"],\n')
-            if i == len(maparray) - 1:
-                map2.write(str(maparray[i]) + ']\n')
-            else:
-                map2.write(str(maparray[i]) + '\n')'''
+input("finish")
