@@ -37,7 +37,7 @@ def process_ans(input_num, filenum):
             f2.write(lines2[input_num - 1] + "\n")
 
         with open(file + "/question.txt", "w") as f1:
-            for i in range(filenum + 1):
+            for i in range(filenum):
                 if i == input_num - 1:
                     continue
                 f1.write(lines2[i] + "\n")
@@ -99,7 +99,6 @@ def multi_input():
             list1.sort()
             for i in range(end - 1, start - 1, -1):
                 process(list1[i])
-            input()
             return 0
                 
         elif inp.startswith("show"):
@@ -137,7 +136,7 @@ with open(file + "/ans.txt", "r") as f1:
 with open(file + "/ans.txt", "w") as f1:
         for i in range(len(lines) - 1, -1, -1):
             f1.write(lines[i] + "\n")
-            
+
 if star == True:
     with open(file + "/question.txt", "r") as f1:
         lines = f1.read().splitlines()
