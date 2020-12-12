@@ -65,7 +65,7 @@ def check(direction):
         else:
             x = len(maparray[0]) - 2
 
-        for i in range(len(maparray) - 1):
+        for i in range(len(maparray)):
             if maparray[i][x] != '' or maparray[i][x + 1] != '':
                 cut = False
                 break
