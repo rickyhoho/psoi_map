@@ -4,25 +4,44 @@ from os.path import split
 import shutil
 
 
-file = "./" + input("input file name:")
-filemap = file + "/map"
-filecode = file + "/code"
-dir_remove = file + "/removed"
-dir_remove_code = dir_remove + "/code"
-dir_remove_map = dir_remove + "/map"
+#12122020160911_200
+#just for copy, ignore it
+draw = False #important
 star = False #important
-
-
-if not os.path.exists(filemap) or not os.path.exists(filecode):
+if draw and star:
     print("ERROR")
     input()
     exit(0)
 
+file = "./" + input("input file name:")
+filemap = file + "/map"
+filecode = file + "/code"
+filequestion = file + "/question"
+file_ans = file + "/ans.txt"
+dir_remove = file + "/removed"
+dir_remove_map = dir_remove + "/map"
+dir_remove_code = dir_remove + "/code"
+dir_remove_question = dir_remove + "/question"
+
+if draw == True:
+    if not os.path.exists(filequestion) or not os.path.exists(filecode):
+        print("ERROR")
+        input()
+        exit(0)
+else:
+    if not os.path.exists(filemap) or not os.path.exists(filecode):
+        print("ERROR")
+        input()
+        exit(0)
+
 
 if not os.path.exists(dir_remove):
     os.mkdir(dir_remove)
-    os.mkdir(dir_remove + "/map")
-    os.mkdir(dir_remove + "/code")
+    os.mkdir(dir_remove_code)
+    if draw == True:
+        os.mkdir(dir_remove_question)
+    else:
+        os.mkdir(dir_remove_map)
 else:
     print("file created")
 
@@ -42,14 +61,14 @@ def process_ans(input_num, filenum):
                     continue
                 f1.write(lines2[i] + "\n")
 
-    with open(file + "/ans.txt", "r") as f1:
+    with open(file_ans, "r") as f1:
         lines = f1.read().splitlines()
         print(lines)
 
     with open(dir_remove + '/ans.txt', "a") as f2:
         f2.write(lines[input_num] + "\n")
 
-    with open(file + "/ans.txt", "w") as f1:
+    with open(file_ans, "w") as f1:
         for i in range(filenum + 1):
             if i == input_num:
                 continue
@@ -57,20 +76,38 @@ def process_ans(input_num, filenum):
 
 
 def process(input_num):
-    all_file = next(os.walk(filemap))
+    all_file = next(os.walk(filecode))
     filenum = len(all_file[2])
 
     png_path = "/" + "%05d" % input_num + ".png"
-    shutil.move(filemap + png_path, dir_remove_map + png_path)
+    qpng_path = "/" + str(input_num)
+
+    if draw == True:
+            shutil.move(filequestion + qpng_path + "A.png", dir_remove_question + qpng_path + "A.png")
+            shutil.move(filequestion + qpng_path + "B.png", dir_remove_question + qpng_path + "B.png")
+            shutil.move(filequestion + qpng_path + "C.png", dir_remove_question + qpng_path + "C.png")
+            shutil.move(filequestion + qpng_path + "D.png", dir_remove_question + qpng_path + "D.png")
+    else:
+        shutil.move(filemap + png_path, dir_remove_map + png_path)
     shutil.move(filecode + png_path, dir_remove_code + png_path)
 
     process_ans(input_num, filenum)
+
     for i in range(input_num, filenum):
+        qpng_path = "/" + str(i)
+        qpng_path1 = "/" + str(i + 1)
         png_path = "/" + "%05d" % i + ".png"
         png_path1 = "/" + "%05d" % (i + 1) + ".png"
 
-        os.rename(filemap + png_path1, filemap + png_path)
+        if draw == True:
+            os.rename(filequestion + qpng_path1 + "A.png", filequestion + qpng_path + "A.png")
+            os.rename(filequestion + qpng_path1 + "B.png", filequestion + qpng_path + "B.png")
+            os.rename(filequestion + qpng_path1 + "C.png", filequestion + qpng_path + "C.png")
+            os.rename(filequestion + qpng_path1 + "D.png", filequestion + qpng_path + "D.png")
+        else:
+            os.rename(filemap + png_path1, filemap + png_path)
         os.rename(filecode + png_path1, filecode + png_path)#old->new
+    print("del " + str(input_num))
 
 
 def multi_input():
@@ -130,18 +167,18 @@ def single_mode():
 multi_input()
 
 
-with open(file + "/ans.txt", "r") as f1:
+with open(dir_remove + "/ans.txt", "r") as f1:
     lines = f1.read().splitlines()
 
-with open(file + "/ans.txt", "w") as f1:
+with open(dir_remove + "/ans.txt", "w") as f1:
         for i in range(len(lines) - 1, -1, -1):
             f1.write(lines[i] + "\n")
 
 if star == True:
-    with open(file + "/question.txt", "r") as f1:
+    with open(dir_remove + "/question.txt", "r") as f1:
         lines = f1.read().splitlines()
 
-    with open(file + "/question.txt", "w") as f1:
+    with open(dir_remove + "/question.txt", "w") as f1:
             for i in range(len(lines) - 1, -1, -1):
                 f1.write(lines[i] + "\n")
 
