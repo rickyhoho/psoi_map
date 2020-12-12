@@ -28,7 +28,7 @@ file_new = file + "/new"
 file_ans = file + '/ans.txt'
 maze_question = '以下哪個是程式運行後的最終目的地？'
 star_question = '運行程式後總共可以獲取多少顆星星？'
-draw_question = '以紅色突出為前方作起點，那個是運行程式後正確的圖形？'
+draw_question = '以紅色突出為前方作起點，哪個是運行程式後正確的圖形？'
 lines = []
 lines2 = []
 
@@ -71,7 +71,7 @@ for i in range(start_row, end_row):
         sht.range("n" + str(i)).value = "C"
         sht.range("p" + str(i)).value = "D"
         sht.range("i" + str(i)).value = maze_question + "<%05dmaze" % (i - 1) + ".png>"
-        shutil.copy(file_new + "/" + "%05d" % (i - start_row + 1) + ".png", './final' + "/%05dmaze" % (i - 1) + ".png")
+        shutil.copy(file_new + "/" + "%05d" % (i - start_row + 1) + ".png", './2020hkpsoi_heat_question200' + "/%05dmaze" % (i - 1) + ".png")
     elif question_type == "star":
         que = lines2[i - start_row].split(",")
         sht.range("j" + str(i)).value = que[0]
@@ -79,18 +79,18 @@ for i in range(start_row, end_row):
         sht.range("n" + str(i)).value = que[2]
         sht.range("p" + str(i)).value = que[3]
         sht.range("i" + str(i)).value = star_question + "<%05dstar" % (i - 1) + ".png>"
-        shutil.copy(file_new + "/" + "%05d" % (i - start_row + 1) + ".png", './final' + "/%05dstar" % (i - 1) + ".png")
+        shutil.copy(file_new + "/" + "%05d" % (i - start_row + 1) + ".png", './2020hkpsoi_heat_question200' + "/%05dstar" % (i - 1) + ".png")
     else:
         sht.range("j" + str(i)).value = "<%05ddraw_" % (i - 1) + "A.png>"
         sht.range("l" + str(i)).value = "<%05ddraw_" % (i - 1) + "B.png>"
         sht.range("n" + str(i)).value = "<%05ddraw_" % (i - 1) + "C.png>"
         sht.range("p" + str(i)).value = "<%05ddraw_" % (i - 1) + "D.png>"
         sht.range("i" + str(i)).value = draw_question + "<%05ddraw" % (i - 1) + ".png>"
-        shutil.copy(file_new + "/" + "%05d" % (i - start_row + 1) + ".png", './final' + "/%05ddrraw" % (i - 1) + ".png")
-        shutil.copy(file + "/question/" + str(i - start_row + 1) + "A.png", './final' + "/%05ddrraw" % (i - 1) + "_A.png")
-        shutil.copy(file + "/question/" + str(i - start_row + 1) + "B.png", './final' + "/%05ddrraw" % (i - 1) + "_B.png")
-        shutil.copy(file + "/question/" + str(i - start_row + 1) + "C.png", './final' + "/%05ddrraw" % (i - 1) + "_C.png")
-        shutil.copy(file + "/question/" + str(i - start_row + 1) + "D.png", './final' + "/%05ddrraw" % (i - 1) + "_D.png")
+        shutil.copy(file_new + "/" + "%05d" % (i - start_row + 1) + ".png", './2020hkpsoi_heat_question200' + "/%05ddraw" % (i - 1) + ".png")
+        shutil.copy(file + "/question/" + str(i - start_row + 1) + "A.png", './2020hkpsoi_heat_question200' + "/%05ddraw" % (i - 1) + "_A.png")
+        shutil.copy(file + "/question/" + str(i - start_row + 1) + "B.png", './2020hkpsoi_heat_question200' + "/%05ddraw" % (i - 1) + "_B.png")
+        shutil.copy(file + "/question/" + str(i - start_row + 1) + "C.png", './2020hkpsoi_heat_question200' + "/%05ddraw" % (i - 1) + "_C.png")
+        shutil.copy(file + "/question/" + str(i - start_row + 1) + "D.png", './2020hkpsoi_heat_question200' + "/%05ddraw" % (i - 1) + "_D.png")
     print(i - start_row + 1)
 
 wb.save()
