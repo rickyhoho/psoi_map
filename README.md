@@ -18,3 +18,5 @@ put under file like
 ```
 it will make a file inside the floder named ```remove```, ```new```, ```newmap.txt```
 change the ```True``` and ```Flase``` of bool ```draw```, ```star```, if necessary
+
+docx will be auto generate by ```gen_docx.py```
